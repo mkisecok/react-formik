@@ -14,6 +14,7 @@ function SignUp() {
         email: '',
         gender:'',
         hobies:[],
+        country:'',
       }}
       onSubmit={(values) => {
        
@@ -85,7 +86,17 @@ function SignUp() {
                 <div><input type="checkbox" name="hobies" value='Football' onChange={handleChange}/>Footbal</div>
                 <div><input type="checkbox" name="hobies" value='Cinema' onChange={handleChange} />Cinema</div>
                 <div><input type="checkbox" name="hobies" value='Photography' onChange={handleChange}/>Photography</div>
-                
+                <br />
+                <br />
+                {/* Dropdown */}
+                <select name="country" value={values.country} onChange={handleChange}>
+                    <option value="turkey"  >Turkey</option>
+                    <option value="german" >German</option>
+                    <option value="usa"  >USA</option>
+                </select>
+
+                <br />
+                <br />
                 <button type="submit">Submit</button>
                 <br />
                 <br />
