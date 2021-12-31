@@ -1,28 +1,26 @@
 import './SignUp.css'
 import React from 'react'
-import { Formik} from 'formik';
+import {  useFormik} from 'formik';
 
 function SignUp() {
+    const {handleSubmit,handleChange,values} = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            gender:'',
+            hobies:[],
+            country:'',
+        },
+        onSubmit: values => {
+            console.log(values);
+        },
+      });
    
     return (
         <div>
              <h1>Sign Up</h1>
-    <Formik
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        gender:'',
-        hobies:[],
-        country:'',
-      }}
-      onSubmit={(values) => {
-       
-      console.log(values);
-      }}
-    >
-        {
-            ({handleSubmit,handleChange,values})=>(
+    
                 <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First Name</label>
                 <input  
@@ -102,10 +100,9 @@ function SignUp() {
                 <br />
                 {JSON.stringify(values)}
               </form>
-            )
-        }
+         
      
-    </Formik>
+   
         </div>
     )
 }
