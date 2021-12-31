@@ -1,6 +1,6 @@
 import './SignUp.css'
 import React from 'react'
-import { Formik, Field, Form } from 'formik';
+import { Formik} from 'formik';
 
 function SignUp() {
    
@@ -12,35 +12,88 @@ function SignUp() {
         firstName: '',
         lastName: '',
         email: '',
+        gender:'',
+        hobies:[],
       }}
       onSubmit={(values) => {
        
       console.log(values);
       }}
     >
-      <Form>
-        <label htmlFor="firstName">First Name</label>
-        <Field  name="firstName" placeholder="Jane" />
-        <br />
-        <br />
+        {
+            ({handleSubmit,handleChange,values})=>(
+                <form onSubmit={handleSubmit}>
+                <label htmlFor="firstName">First Name</label>
+                <input  
+                name="firstName" 
+                placeholder="max" 
+                value={values.firstName}
+                onChange={handleChange} />
+                <br />
+                <br />
+        
+                <label htmlFor="lastName">Last Name</label>
+                <input  
+                name="lastName" 
+                placeholder="Musterman" 
+                value={values.lastName}
+                onChange={handleChange}/>
+        
+                <br />
+                <br />
+        
+                <label htmlFor="email">Email</label>
+                <input
+                  onChange={handleChange}
+                  name="email"
+                  placeholder="maxmusterman@acme.com"
+                  value={values.email}
+                  type="email"
+                />
+                 <br />
+                <br />
 
-        <label htmlFor="lastName">Last Name</label>
-        <Field  name="lastName" placeholder="Doe" />
+                {/* Radio input */}
+                <label htmlFor="gender">Gender</label>
+                <br />
+                
+                <input
+                  onChange={handleChange}
+                  name="gender"
+                  value='male'
+                  type='radio'
+                />
+                <span>Male</span>
+                
+                 <input
+                  onChange={handleChange}
+                  name="gender"
+                  value='female'
+                  type='radio'
+                /><span>Female</span>
+                
+                 <input
+                  onChange={handleChange}
+                  name="gender"
+                  value='other'
+                  type='radio'
+                /><span>Other</span>
+                <br />
+                <br />
 
-        <br />
-        <br />
-
-        <label htmlFor="email">Email</label>
-        <Field
-          id="email"
-          name="email"
-          placeholder="jane@acme.com"
-          type="email"
-        />
-         <br />
-        <br />
-        <button type="submit">Submit</button>
-      </Form>
+                {/* Checkbox */}
+                <div><input type="checkbox" name="hobies" value='Football' onChange={handleChange}/>Footbal</div>
+                <div><input type="checkbox" name="hobies" value='Cinema' onChange={handleChange} />Cinema</div>
+                <div><input type="checkbox" name="hobies" value='Photography' onChange={handleChange}/>Photography</div>
+                
+                <button type="submit">Submit</button>
+                <br />
+                <br />
+                {JSON.stringify(values)}
+              </form>
+            )
+        }
+     
     </Formik>
         </div>
     )
