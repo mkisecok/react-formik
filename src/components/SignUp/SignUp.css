@@ -1,3 +1,6 @@
 label{
     display: block;
 }
+.errors{
+    color: red;
+}

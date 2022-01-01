@@ -5,13 +5,13 @@ import validationSchema from '../validation';
 
 
 function SignUp() {
-    const {handleSubmit,handleChange,values} = useFormik({
+    const {handleSubmit,handleChange, handleBlur,values,errors,touched} = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
             email: '',
             gender:'',
-            hobies:[],
+            hobbies:[],
             country:'',
             password:'',
             passwordConfirm:''
@@ -21,6 +21,7 @@ function SignUp() {
         },
         validationSchema,
       });
+      console.log(errors)
    
     return (
         <div>
@@ -32,7 +33,9 @@ function SignUp() {
                 name="firstName" 
                 placeholder="max" 
                 value={values.firstName}
-                onChange={handleChange} />
+                onChange={handleChange}
+                onBlur={handleBlur} />
+                {errors.firstName &&  touched.firstName && <div className='errors'>{errors.firstName}</div>}
                 <br />
                 <br />
         
@@ -41,36 +44,46 @@ function SignUp() {
                 name="lastName" 
                 placeholder="Musterman" 
                 value={values.lastName}
-                onChange={handleChange}/>
-        
+                onChange={handleChange}
+                onBlur={handleBlur}/>
+              {errors.lastName && touched.lastName && <div className='errors'>{errors.lastName}</div>}
                 <br />
                 <br />
         
                 <label htmlFor="email">Email</label>
                 <input
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   name="email"
                   placeholder="maxmusterman@acme.com"
                   value={values.email}
                   type="email"
                 />
+                {errors.email && touched.email && <div className='errors'>{errors.email}</div>}
                  <br />
                 <br />
                 {/* Password and confirmPassword*/}
                 <label htmlFor="password">Password</label>
                 <input  
                 name="password" 
-                placeholder="max" 
+                type='password'
+                onChange={handleChange}
+                onBlur={handleBlur}
                 value={values.password}
-                onChange={handleChange} />
+                 />
+                 {errors.password && touched.password && <div className='errors'>{errors.password}</div>}
                 <br />
                 <br />
                 <label htmlFor="passwordConfirm">Password Confirm</label>
                 <input  
                 name="passwordConfirm" 
-                placeholder="max" 
+                type='password'
+                onChange={handleChange}
+                onBlur={handleBlur}
                 value={values.passwordConfirm}
-                onChange={handleChange} />
+               
+                />
+                 {errors.passwordConfirm && touched.passwordConfirm && <div className='errors'>{errors.passwordConfirm}</div>}
                 <br />
                 <br />
 
@@ -80,6 +93,7 @@ function SignUp() {
                 
                 <input
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   name="gender"
                   value='male'
                   type='radio'
@@ -88,6 +102,7 @@ function SignUp() {
                 
                  <input
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   name="gender"
                   value='female'
                   type='radio'
@@ -95,17 +110,19 @@ function SignUp() {
                 
                  <input
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   name="gender"
                   value='other'
                   type='radio'
                 /><span>Other</span>
                 <br />
+                {errors.gender && touched.gender && <div className='errors'>{errors.gender}</div>}
                 <br />
-
+                <br />
                 {/* Checkbox */}
-                <div><input type="checkbox" name="hobies" value='Football' onChange={handleChange}/>Footbal</div>
-                <div><input type="checkbox" name="hobies" value='Cinema' onChange={handleChange} />Cinema</div>
-                <div><input type="checkbox" name="hobies" value='Photography' onChange={handleChange}/>Photography</div>
+                <div><input type="checkbox" name="hobbies" value='Football' onChange={handleChange}/>Footbal</div>
+                <div><input type="checkbox" name="hobbies" value='Cinema' onChange={handleChange} />Cinema</div>
+                <div><input type="checkbox" name="hobbies" value='Photography' onChange={handleChange}/>Photography</div>
                 <br />
                 <br />
                 {/* Dropdown */}
