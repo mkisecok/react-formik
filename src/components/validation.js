@@ -8,6 +8,5 @@ const validations = yup.object().shape({
     password:yup.string().min(5).required(),
     passwordConfirm:yup.string().oneOf([yup.ref('password')],'Thats not a same with your password').required(),
     
-    
   });
   export default validations
